@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tela de login do Pit Lane F1 (demonstração de interface).">
+  <title>Login | Pit Lane F1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="auth">
+    <!-- Sem JavaScript e sem backend: os campos não têm "name", então nenhum dado é enviado.
+         O botão só leva para a próxima página. "required" e type="email" validam o preenchimento. -->
+    <form class="form-card" action="index.html">
+      <a href="index.html" class="logo" aria-label="Pit Lane F1, voltar ao site">PIT LANE <span>F1</span></a>
+      <h1>Entrar</h1>
+      <p class="form-sub">Acesse sua conta para acompanhar a temporada.</p>
+      <p class="aviso" role="note">Demonstração de interface: não existe autenticação real.</p>
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="voce@email.com" autocomplete="email" required>
+      </div>
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Sua senha" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit">Entrar</button>
+      <p class="form-links">
+        <a href="#">Esqueci minha senha</a>
+        <span>Não tem conta? <a href="cadastro.html">Criar conta</a></span>
+        <a href="index.html">← Voltar ao site</a>
+      </p>
+    </form>
+  </main>
+</body>
+</html>
