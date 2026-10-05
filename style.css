@@ -1,0 +1,224 @@
+/* =====================================================
+   PIT LANE F1 — style.css
+   Blocos: 1 Reset · 2 Variáveis · 3 Base · 4 Header · 5 Hero · 6 Botões
+   7 Seções · 8 Cards · 9 Carros · 10 Pilotos · 11 Equipes · 12 Circuitos
+   13 Calendário · 14 Formulários · 15 Footer · 16 Responsivo
+   ===================================================== */
+
+/* ===== 1. RESET ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+ul,ol{list-style:none}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+img{max-width:100%;display:block}
+
+/* ===== 2. VARIÁVEIS (paleta e medidas: altere só aqui) ===== */
+:root{
+  --bg-primary:#0a0a0c;--bg-secondary:#111115;--bg-card:#18181d;
+  --accent:#e10600;--accent-dark:#a80500;--accent-text:#ff5a52; /* vermelho claro para textos pequenos (contraste) */
+  --text-primary:#f5f5f7;--text-secondary:#a8a8b3;--metal:#c9ccd1;
+  --border:#2a2a32;--shadow:0 10px 30px rgba(0,0,0,.45);
+  --radius:12px;--ease:.3s ease;
+  /* Fonte externa: Titillium Web (Google Fonts, carregada no <head> do HTML) */
+  --fonte:"Titillium Web","Segoe UI",Arial,sans-serif;
+}
+
+/* ===== 3. BASE ===== */
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--fonte);background:var(--bg-primary);color:var(--text-primary);line-height:1.6}
+.container{width:min(1150px,100% - 40px);margin-inline:auto}
+:focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
+h1,h2,h3{line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
+@keyframes entrada{from{opacity:0;transform:translateY(24px)}}
+
+/* ===== 4. HEADER ===== */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(10,10,12,.85);backdrop-filter:blur(10px);border-bottom:2px solid var(--accent-dark)}
+.header-bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:1.5rem;font-weight:900;font-style:italic;letter-spacing:.04em}
+.logo span{color:var(--accent)}
+.menu{display:flex;align-items:center;gap:4px}
+.menu a{position:relative;display:block;padding:8px 12px;font-size:.85rem;font-weight:600;letter-spacing:.08em;color:var(--text-secondary);transition:color var(--ease)}
+.menu a::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--accent);transform:scaleX(0);transition:transform var(--ease)}
+.menu a:hover,.menu a:focus-visible{color:var(--text-primary)}
+.menu a:hover::after{transform:scaleX(1)}
+.menu .btn-login{margin-left:10px;background:var(--accent);color:#fff;border-radius:6px}
+.menu .btn-login::after{display:none}
+.menu .btn-login:hover{background:var(--accent-dark)}
+/* Link ativo: a seção clicada vira :target e o body:has() destaca o link correspondente (sem JavaScript) */
+body:not(:has(:target)) .menu a[href="#inicio"],
+body:has(#f1:target) .menu a[href="#f1"],body:has(#carros:target) .menu a[href="#carros"],
+body:has(#pilotos:target) .menu a[href="#pilotos"],body:has(#equipes:target) .menu a[href="#equipes"],
+body:has(#pistas:target) .menu a[href="#pistas"],body:has(#calendario:target) .menu a[href="#calendario"]{color:var(--text-primary);box-shadow:inset 0 -2px 0 var(--accent)}
+.menu-toggle,.menu-btn{display:none}
+
+/* ===== 5. HERO ===== */
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:88vh;padding:80px 0 40px;display:flex;flex-direction:column;justify-content:space-between}
+/* Imagem: troque o caminho em --img no HTML. Sem imagem, aparece o degradê de fundo. */
+.hero-bg{position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,var(--bg-primary) 18%,rgba(10,10,12,.55) 65%,rgba(10,10,12,.8)),
+  linear-gradient(0deg,var(--bg-primary),transparent 45%),
+  var(--img,none) center/cover,
+  radial-gradient(circle at 75% 35%,#3a1412,var(--bg-secondary) 55%,var(--bg-primary))}
+.hero-bg::before{content:"";position:absolute;right:6%;top:15%;width:360px;height:360px;background:radial-gradient(circle,rgba(225,6,0,.3),transparent 65%)}
+.hero-bg::after{content:"";position:absolute;right:-10%;top:0;bottom:0;width:45%;transform:skewX(-12deg);background:repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,.04) 22px 24px)}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent-text);font-size:.8rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase}
+.eyebrow::before{content:"";width:36px;height:2px;background:var(--accent)}
+.hero h1{max-width:12ch;margin:16px 0 20px;font-size:clamp(2.6rem,7vw,5.2rem);font-weight:900;font-style:italic}
+.hero-texto{max-width:46ch;color:var(--metal);font-size:1.1rem}
+.hero-botoes{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:56px}
+.stats li{padding:16px 20px;background:rgba(17,17,21,.85);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:8px;backdrop-filter:blur(6px)}
+.stats strong{display:block;font-size:2.2rem;font-weight:900;font-style:italic;line-height:1}
+.stats span{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
+.nota{margin-top:12px;font-size:.78rem;color:var(--text-secondary)}
+.atalhos{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;padding:40px 0 0}
+.atalho{padding:16px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;transition:border-color var(--ease),transform var(--ease)}
+.atalho:hover{border-color:var(--accent);transform:translateY(-4px)}
+.atalho span{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);font-weight:700}
+.atalho strong{font-size:1.05rem}
+
+/* ===== 6. BOTÕES ===== */
+.btn{display:inline-block;padding:13px 28px;border:2px solid transparent;border-radius:6px;font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;cursor:pointer;transition:transform var(--ease),background var(--ease),border-color var(--ease),box-shadow var(--ease)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-3px);box-shadow:0 8px 20px rgba(225,6,0,.35)}
+.btn-outline{border-color:var(--metal);color:var(--text-primary)}
+.btn-outline:hover{border-color:var(--accent);background:rgba(225,6,0,.12);transform:translateY(-3px)}
+.btn-sm{padding:9px 18px;font-size:.75rem}
+
+/* ===== 7. SEÇÕES ===== */
+.section{padding:90px 0;animation:entrada .8s ease both}
+.section--alt{background:var(--bg-secondary);border-block:1px solid var(--border)}
+.section-head{margin-bottom:40px}
+.section-head h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:900;font-style:italic}
+.section-head h2::after{content:"";display:block;width:64px;height:4px;margin-top:12px;background:var(--accent)}
+.section-head p{max-width:60ch;margin-top:12px;color:var(--text-secondary)}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+/* Sobre a F1: texto à esquerda, cards com hierarquia à direita */
+.sobre{display:grid;grid-template-columns:1fr 1.3fr;gap:50px;align-items:start}
+.sobre-texto p{margin-bottom:16px;color:var(--text-secondary)}
+.sobre-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.info{padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:border-color var(--ease),transform var(--ease)}
+.info:hover{border-color:var(--accent-dark);transform:translateY(-4px)}
+.info h3{margin-bottom:6px;font-size:1rem;letter-spacing:.1em;color:var(--metal)}
+.info p{font-size:.9rem;color:var(--text-secondary)}
+.info--largo{grid-column:span 2}
+.info--destaque{border-left:4px solid var(--accent);background:linear-gradient(90deg,#2a1010,var(--bg-card))}
+.info--destaque h3{font-size:1.6rem;color:var(--text-primary)}
+
+/* ===== 8. CARDS (componente base reutilizado em todas as seções) ===== */
+.card{position:relative;display:flex;flex-direction:column;overflow:hidden;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease)}
+.card::after{content:"";position:absolute;left:0;bottom:0;width:0;height:3px;background:var(--accent);transition:width .4s ease}
+.card:hover,.card:focus-within{transform:translateY(-6px);border-color:var(--accent-dark);box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.card:hover::after,.card:focus-within::after{width:100%}
+.card-body{display:flex;flex-direction:column;flex:1;gap:6px;padding:20px}
+.card h3{font-size:1.3rem;font-weight:900}
+.card p{font-size:.95rem;color:var(--text-secondary)}
+.tag{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-text)}
+.link-seta{margin-top:auto;padding-top:10px;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:color var(--ease),letter-spacing var(--ease)}
+.link-seta:hover{color:var(--accent-text);letter-spacing:.14em}
+/* Área de imagem: a foto entra pela variável --img; sem foto, aparece o degradê com o texto de data-label */
+.media{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:16/10;background:linear-gradient(135deg,#2a2a33,#0f0f13)}
+.media::before{content:"";position:absolute;inset:0;z-index:1;background:var(--img,none) center/cover;transition:transform .6s ease}
+.media::after{content:attr(data-label);position:absolute;inset:0;z-index:0;display:grid;place-items:center;font-size:2.4rem;font-weight:900;font-style:italic;color:rgba(255,255,255,.12)}
+.card:hover .media::before{transform:scale(1.06)}
+.dados{margin-top:10px;border-top:1px solid var(--border)}
+.dados div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.9rem}
+.dados dt{color:var(--text-secondary)}
+.dados dd{font-weight:600;text-align:right}
+
+/* ===== 9. CARROS ===== */
+.media--car{aspect-ratio:4/3}
+.car-pilotos{color:var(--text-primary)!important;font-weight:600}
+
+/* ===== 10. PILOTOS ===== */
+.media--driver{aspect-ratio:4/5}
+.driver-num{position:absolute;right:14px;bottom:-4px;z-index:2;font-size:6rem;font-weight:900;font-style:italic;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.4)}
+.driver h3 span{display:block;font-size:.9rem;font-weight:400;letter-spacing:.2em}
+
+/* ===== 11. EQUIPES ===== */
+.team-logo{display:grid;place-items:center;height:110px;background:linear-gradient(135deg,#22222a,#121216);border-bottom:1px solid var(--border)}
+.team-logo img{width:auto;max-height:64px}
+.team-logo span{font-size:2.2rem;font-weight:900;font-style:italic;letter-spacing:.08em;color:var(--metal)}
+
+/* ===== 12. CIRCUITOS ===== */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.chips a{display:inline-block;padding:8px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:999px;font-size:.85rem;font-weight:600;transition:background var(--ease),border-color var(--ease)}
+.chips a:hover{background:var(--accent);border-color:var(--accent)}
+.circuit:target{border-color:var(--accent)}
+.ficha{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;padding:12px 0;border-block:1px solid var(--border)}
+.ficha strong{display:block;font-size:1.8rem;font-weight:900;font-style:italic;line-height:1}
+.ficha span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
+.circuit .btn{align-self:flex-start;margin-top:auto}
+
+/* ===== 13. CALENDÁRIO ===== */
+.calendario{display:grid;gap:12px}
+.corrida{display:grid;grid-template-columns:64px 1.3fr 1.3fr 1fr 130px;gap:16px;align-items:center;padding:16px 22px;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:var(--radius);transition:transform var(--ease),background var(--ease)}
+.corrida:hover{transform:translateX(6px);background:#1e1e25}
+.corrida .num{font-size:2rem;font-weight:900;font-style:italic;color:var(--text-secondary)}
+.corrida h3{font-size:1.1rem}
+.corrida p,.corrida .data{font-size:.85rem;color:var(--text-secondary)}
+.status{justify-self:end;padding:5px 14px;border:1px solid var(--border);border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--text-secondary)}
+.corrida--proxima{border-left-color:var(--accent);background:linear-gradient(90deg,#2a1010,var(--bg-card))}
+.corrida--proxima .num{color:var(--accent-text)}
+.corrida--proxima .status{background:var(--accent);border-color:var(--accent);color:#fff}
+.corrida--breve .status{border-color:var(--metal);color:var(--metal)}
+
+/* ===== 14. FORMULÁRIOS (login e cadastro) ===== */
+.auth{display:grid;place-items:center;min-height:100vh;padding:24px;
+  background:radial-gradient(circle at 80% 10%,rgba(225,6,0,.25),transparent 45%),repeating-linear-gradient(115deg,transparent 0 40px,rgba(255,255,255,.03) 40px 42px),var(--bg-primary)}
+.form-card{width:min(100%,430px);padding:36px 32px;background:rgba(24,24,29,.94);border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);animation:entrada .7s ease both}
+.form-card h1{margin-top:18px;font-size:1.9rem;font-weight:900;font-style:italic}
+.form-sub{margin:6px 0 20px;color:var(--text-secondary)}
+.aviso{padding:10px 12px;border:1px solid var(--accent-dark);border-radius:8px;background:rgba(225,6,0,.1);font-size:.8rem}
+.campo{margin-top:16px}
+.campo label{display:block;margin-bottom:6px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--metal)}
+.campo input{width:100%;padding:12px 14px;color:var(--text-primary);background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;transition:border-color var(--ease),box-shadow var(--ease)}
+.campo input::placeholder{color:#7a7a86}
+.campo input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(225,6,0,.3)}
+.campo input:not(:placeholder-shown):invalid{border-color:#ff8a4d} /* aviso visual de campo inválido */
+.dica{display:block;margin-top:6px;font-size:.78rem;color:var(--text-secondary)}
+.form-card .btn{width:100%;margin-top:24px}
+.form-links{display:grid;gap:8px;margin-top:20px;text-align:center;font-size:.9rem;color:var(--text-secondary)}
+.form-links a{font-weight:600;color:var(--accent-text)}
+.form-links a:hover{text-decoration:underline}
+
+/* ===== 15. FOOTER ===== */
+.site-footer{padding:60px 0 24px;background:#050506;border-top:2px solid var(--accent-dark);font-size:.92rem;color:var(--text-secondary)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+.footer-grid h2{margin-bottom:14px;font-size:.85rem;letter-spacing:.2em;color:var(--text-primary)}
+.footer-grid li{margin-bottom:8px}
+.footer-grid a{transition:color var(--ease)}
+.footer-grid a:hover{color:var(--accent-text)}
+.footer-grid .logo{display:block;margin-bottom:12px;color:var(--text-primary)}
+.footer-fim{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);text-align:center;font-size:.8rem}
+
+/* ===== 16. RESPONSIVO ===== */
+@media(max-width:1024px){
+  .sobre{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:850px){
+  /* Menu hambúrguer sem JavaScript: checkbox marcado (:checked) = menu aberto */
+  .menu-toggle{display:block;position:absolute;width:1px;height:1px;opacity:0}
+  .menu-toggle:focus-visible+.menu-btn{outline:3px solid var(--accent-text)}
+  .menu-btn{display:block;margin-left:auto;padding:2px 12px;border:2px solid var(--metal);border-radius:6px;font-size:1.4rem;cursor:pointer}
+  .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;padding:16px 20px;background:rgba(10,10,12,.97);border-bottom:2px solid var(--accent-dark)}
+  .menu-toggle:checked~nav .menu{display:flex}
+  .menu .btn-login{margin:8px 0 0;text-align:center}
+}
+@media(max-width:700px){
+  .section{padding:64px 0}
+  .hero{min-height:auto;padding-top:56px}
+  .sobre-cards{grid-template-columns:1fr}
+  .info--largo{grid-column:auto}
+  .corrida{grid-template-columns:48px 1fr;gap:6px 14px}
+  .corrida>:nth-child(n+3){grid-column:2}
+  .status{justify-self:start;margin-top:6px}
+  .footer-grid{grid-template-columns:1fr}
+  .form-card{padding:28px 20px}
+}
+/* Respeita quem prefere menos animações */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
