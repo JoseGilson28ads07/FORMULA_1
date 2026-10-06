@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tela de cadastro do Pit Lane F1 (demonstração de interface).">
+  <title>Cadastro | Pit Lane F1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;0,600;0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="auth">
+    <!-- Sem JavaScript e sem backend: nenhum dado é enviado nem salvo. -->
+    <form class="form-card" action="login.html">
+      <a href="index.html" class="logo" aria-label="Pit Lane F1, voltar ao site">PIT LANE <span>F1</span></a>
+      <h1>Criar conta</h1>
+      <p class="form-sub">Preencha os dados para se cadastrar.</p>
+      <p class="aviso" role="note">Demonstração de interface: nenhum dado é enviado ou salvo.</p>
+      <div class="campo">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Seu nome completo" autocomplete="name" required>
+      </div>
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="voce@email.com" autocomplete="email" required>
+      </div>
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Crie uma senha" autocomplete="new-password" minlength="8" aria-describedby="dica-senha" required>
+        <small class="dica" id="dica-senha">Use pelo menos 8 caracteres.</small>
+      </div>
+      <div class="campo">
+        <label for="senha2">Confirmar senha</label>
+        <input type="password" id="senha2" placeholder="Repita a senha" autocomplete="new-password" minlength="8" required>
+      </div>
+      <button class="btn btn-primary" type="submit">Cadastrar</button>
+      <p class="form-links">
+        <span>Já tem conta? <a href="login.html">Entrar</a></span>
+        <a href="index.html">← Voltar ao site</a>
+      </p>
+    </form>
+  </main>
+</body>
+</html>
